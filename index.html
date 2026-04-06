@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créméco | Innovation funéraire écoresponsable</title>
+  <meta name="description" content="Créméco développe un contenant de crémation écoresponsable à base de matières revalorisées, pensé pour le secteur funéraire." />
+  <style>
+    :root {
+      --bg: #f7f4ec;
+      --bg-soft: #eef4ea;
+      --card: #ffffff;
+      --text: #1f3527;
+      --muted: #5b6f5e;
+      --primary: #2e5b3c;
+      --primary-dark: #244a30;
+      --accent: #9ab79d;
+      --accent-soft: #dce7d7;
+      --sand: #d7c9a6;
+      --border: #d9e3d2;
+      --shadow: 0 12px 30px rgba(28, 49, 34, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid var(--border);
+      color: #46644a;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.35rem;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.8);
+      border-color: var(--accent);
+      color: var(--primary);
+    }
+    .btn-secondary:hover { background: #f6fbf4; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(115,154,121,0.18), transparent 34%),
+        linear-gradient(180deg, #f7f4ec 0%, #eef4ea 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 320px;
+      height: 320px;
+      right: -60px;
+      top: -80px;
+      background: rgba(154, 183, 157, 0.45);
+    }
+
+    .hero::after {
+      width: 260px;
+      height: 260px;
+      left: -40px;
+      bottom: -70px;
+      background: rgba(215, 201, 166, 0.42);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      color: var(--muted);
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 2.2rem 0 4.5rem;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin: 1rem 0 1rem;
+    }
+
+    .hero p.lead {
+      font-size: 1.12rem;
+      max-width: 700px;
+      color: #35513c;
+      margin-bottom: 1.6rem;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-card,
+    .card,
+    .timeline-item,
+    .contact-card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card {
+      padding: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-panel {
+      padding: 1rem;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(28,49,34,0.09);
+    }
+
+    .hero-panel-inner {
+      border-radius: 28px;
+      background: linear-gradient(135deg, #eef4ea 0%, #f7f4ec 55%, #e2eadb 100%);
+      padding: 1.4rem;
+    }
+
+    .mission-box {
+      background: var(--primary);
+      color: white;
+      padding: 1.35rem;
+      border-radius: 26px;
+      margin-bottom: 1rem;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .mini-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 1rem;
+    }
+
+    .mini-card .label,
+    .positioning .label,
+    .section-head .label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #6b826d;
+      margin-bottom: 0.35rem;
+    }
+
+    .positioning {
+      border: 2px dashed var(--accent);
+      background: #f8fbf6;
+      padding: 1rem;
+      border-radius: 22px;
+    }
+
+    section { padding: 5.2rem 0; }
+
+    .section-head {
+      max-width: 820px;
+      margin-bottom: 2rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .section-head p {
+      color: #526855;
+      font-size: 1.06rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .card {
+      padding: 1.35rem;
+      height: 100%;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: #edf5e8;
+      color: var(--primary);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p, .timeline-item p, .contact-card p {
+      color: var(--muted);
+    }
+
+    .soft-section {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.15fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      padding: 1.2rem;
+    }
+
+    .timeline-top {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 0.45rem;
+    }
+
+    .step {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #739079;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+
+    .dark-card {
+      background: var(--primary);
+      color: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 18px 38px rgba(31, 53, 39, 0.18);
+    }
+
+    .dark-card p { color: rgba(255,255,255,0.84); }
+
+    .bullet-list {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .bullet {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: #536856;
+    }
+
+    .bullet span:first-child {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .pill {
+      padding: 0.7rem 0.95rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.1);
+      font-size: 0.92rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: 1.2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .contact-card {
+      padding: 1.25rem;
+    }
+
+    footer {
+      background: #203326;
+      color: white;
+      border-top: 1px solid #2f4c38;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.4rem 0;
+      flex-wrap: wrap;
+    }
+
+    .muted-light { color: rgba(255,255,255,0.72); }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .split,
+      .two-col,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      nav { gap: 1rem; align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 0.85rem; font-size: 0.95rem; }
+      .grid-4,
+      .stats,
+      .mini-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 0; }
+      .hero-grid { padding-bottom: 3.2rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">
+          <div class="brand-mark">🍃</div>
+          <div>
+            <div>Créméco</div>
+            <div style="font-size:0.82rem;color:var(--muted);font-weight:600;">Innovation funéraire écoresponsable</div>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#solution">Solution</a>
+          <a href="#fonctionnement">Fonctionnement</a>
+          <a href="#vision">Vision</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid" id="top">
+        <div>
+          <div class="badge">Innovation funéraire écoresponsable</div>
+          <h1>Le contenant de crémation conçu pour l’économie circulaire.</h1>
+          <p class="lead">
+            Créméco développe un contenant de crémation biosourcé fabriqué à partir de matières revalorisées afin d’offrir au secteur funéraire une alternative plus durable, crédible et adaptée aux réalités du terrain.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#solution">Découvrir la solution</a>
+            <a class="btn btn-secondary" href="#contact">Nous contacter</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-value">76 %</div>
+              <div class="stat-label">taux de crémation au Canada</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">-16,2 kg</div>
+              <div class="stat-label">CO₂ estimé par contenant Créméco</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">TRL 7</div>
+              <div class="stat-label">objectif de validation en conditions réelles</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">100+</div>
+              <div class="stat-label">acteurs du milieu sensibilisés</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-panel-inner">
+            <div class="mission-box">
+              <div style="text-transform:uppercase;letter-spacing:0.18em;font-size:0.78rem;color:rgba(255,255,255,0.76);font-weight:800;">Mission</div>
+              <div style="font-size:1.5rem;font-weight:800;margin-top:0.5rem;line-height:1.2;">Réinventer le contenant de crémation avec une matière revalorisée.</div>
+            </div>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <div class="label">Pourquoi maintenant</div>
+                <p>Le marché de la crémation grandit rapidement, tandis que le secteur cherche des solutions plus responsables et mieux adaptées à ses opérations.</p>
+              </div>
+              <div class="mini-card">
+                <div class="label">Notre promesse</div>
+                <p>Offrir une alternative crédible entre le carton et le bois avec une logique environnementale forte et un potentiel industriel réel.</p>
+              </div>
+            </div>
+
+            <div class="positioning">
+              <div class="label">Positionnement</div>
+              <div style="font-size:1.2rem;font-weight:800;color:#27442d;">Durable. Digne. Fonctionnel.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="solution">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge" style="background:#e7efe2;border:none;">Une réponse à un vrai besoin du marché</div>
+          <h2>Une alternative funéraire alignée avec les enjeux environnementaux.</h2>
+          <p>
+            Créméco développe une solution destinée aux maisons funéraires et aux crématoriums qui souhaitent réduire leur empreinte environnementale sans compromettre la sécurité, la dignité du service et l’efficacité opérationnelle.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="icon">🍃</div>
+            <h3>Écoresponsable par conception</h3>
+            <p>Nous revalorisons des matières résiduelles pour créer un contenant biosourcé cohérent avec les principes de l’économie circulaire.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🛡️</div>
+            <h3>Sécuritaire à manipuler</h3>
+            <p>Notre approche vise une alternative plus robuste que le carton, mieux adaptée aux réalités des maisons funéraires et des crématoriums.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🏭</div>
+            <h3>Pensé pour les opérations</h3>
+            <p>Le produit est développé pour offrir un compromis réaliste entre coût, performance mécanique et comportement en crémation.</p>
+          </article>
+          <article class="card">
+            <div class="icon">♻️</div>
+            <h3>Impact concret</h3>
+            <p>Créméco réduit la dépendance aux matériaux traditionnels tout en valorisant une ressource locale encore peu exploitée.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section" id="fonctionnement">
+      <div class="container split">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="badge">Comment ça fonctionne</div>
+          <h2>De la matière résiduelle à un produit à forte valeur.</h2>
+          <p>
+            Notre approche repose sur la revalorisation de coproduits agroalimentaires, le développement d’un matériau biosourcé performant et une validation progressive avec des partenaires du terrain.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-top"><span class="icon" style="margin:0;width:42px;height:42px;font-size:1.1rem;">♻️</span><div><div class="step">01</div><h3 style="margin:0;">Revalorisation</h3></div></div>
+            <p>Des résidus agroalimentaires sont transformés en matière première utile plutôt qu’éliminés comme déchet.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-top"><span class="icon" style="margin:0;width:42px;height:42px;font-size:1.1rem;">🧪</span><div><div class="step">02</div><h3 style="margin:0;">Développement matériau</h3></div></div>
+            <p>La formulation est optimisée pour obtenir la résistance, la stabilité et le comportement thermique recherchés.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-top"><span class="icon" style="margin:0;width:42px;height:42px;font-size:1.1rem;">🏭</span><div><div class="step">03</div><h3 style="margin:0;">Fabrication</h3></div></div>
+            <p>Le matériau est mis en forme pour produire un contenant de crémation sobre, digne et adapté au secteur funéraire.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-top"><span class="icon" style="margin:0;width:42px;height:42px;font-size:1.1rem;">🤝</span><div><div class="step">04</div><h3 style="margin:0;">Adoption terrain</h3></div></div>
+            <p>Le produit est validé avec des partenaires du secteur afin de répondre à de vrais besoins opérationnels.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision">
+      <div class="container two-col">
+        <article class="card" style="padding:2rem;">
+          <div class="badge" style="background:#edf5e8;border:none;">Pour le secteur funéraire</div>
+          <h2 style="font-size:2rem;line-height:1.1;margin-top:1rem;">Une solution pensée pour les maisons funéraires et les crématoriums.</h2>
+          <div class="bullet-list">
+            <div class="bullet"><span>›</span><span>Alternative biosourcée au carton et au bois</span></div>
+            <div class="bullet"><span>›</span><span>Approche compatible avec les enjeux de sécurité et de manutention</span></div>
+            <div class="bullet"><span>›</span><span>Positionnement intermédiaire entre performance et accessibilité</span></div>
+            <div class="bullet"><span>›</span><span>Démarche structurée de validation technique et terrain</span></div>
+          </div>
+        </article>
+
+        <article class="dark-card">
+          <div class="badge" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.18);">Vision</div>
+          <h2 style="font-size:2rem;line-height:1.1;margin-top:1rem;">Faire évoluer le secteur funéraire vers des matériaux plus responsables.</h2>
+          <p>
+            Créméco veut contribuer à une transition concrète du secteur funéraire en proposant des solutions innovantes, utiles et adaptées aux réalités des opérations. Notre ambition est de bâtir une référence québécoise en innovation funéraire écoresponsable.
+          </p>
+          <div class="pill-row">
+            <div class="pill">Innovation biosourcée</div>
+            <div class="pill">Économie circulaire</div>
+            <div class="pill">Validation terrain</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="soft-section" id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="section-head" style="margin-bottom:0;">
+            <div class="badge">Parlons de Créméco</div>
+            <h2>Vous souhaitez suivre le projet, collaborer ou en savoir plus?</h2>
+            <p>
+              Nous travaillons avec des partenaires techniques et des acteurs du secteur funéraire pour faire progresser le développement et la validation de notre solution.
+            </p>
+          </div>
+          <div class="cta-row" style="margin-bottom:0;justify-content:flex-start;">
+            <a class="btn btn-primary" href="mailto:info@cremeco.ca">Prendre contact</a>
+            <a class="btn btn-secondary" href="#top">Retour en haut</a>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Courriel</h3>
+            <p>info@cremeco.ca</p>
+          </div>
+          <div class="contact-card">
+            <h3>Téléphone</h3>
+            <p>À ajouter</p>
+          </div>
+          <div class="contact-card">
+            <h3>Localisation</h3>
+            <p>Sherbrooke, Québec</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div style="font-weight:800;font-size:1.1rem;">Créméco</div>
+        <div class="muted-light">Innovation funéraire écoresponsable à base de matières revalorisées.</div>
+      </div>
+      <div class="muted-light">© 2026 Créméco. Tous droits réservés.</div>
+    </div>
+  </footer>
+</body>
+</html>
